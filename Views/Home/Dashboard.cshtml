@@ -1,0 +1,43 @@
+@model List<Wedding>
+<div class="jumbotron">
+<h1>Welcome to the Wedding Planner, @ViewBag.User.FirstName</h1>
+<a href="/logout" class="btn btn-danger">Logout</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Wedding</th>
+            <th>Date</th>
+            <th>Guests</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Wedding w in Model)
+        {
+        <tr>
+            <td><a href="/show/@w.WeddingId">@w.Wedder1 & @w.Wedder2</a></td>
+            <td>@String.Format("{0:d}", w.WeddingDay) </td>
+            <td>@w.guests.Count</td>
+            <td>
+                @if(ViewBag.User.UserId == w.myWedding.UserId)
+                {
+                    <a href="/cancel/@w.WeddingId" class="btn btn-danger">Delete</a>
+                }
+                else
+                {
+                    if(w.guests.Any(w => w.UserId == ViewBag.User.UserId))
+                    {
+                        <a href="/notgoing/@w.WeddingId" class="btn btn-warning">Un-RSVP</a>
+                    }
+                    else
+                    {
+                        <a href="/rsvp/@w.WeddingId" class="btn btn-success">RSVP</a>
+                    }
+                }
+            </td>
+        </tr>
+            }        
+    </tbody>
+</table>
+<a href="/planWedding" class="btn btn-info">New Wedding</a>
+</div>

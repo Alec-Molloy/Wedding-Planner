@@ -1,0 +1,16 @@
+@model Wedding
+
+<div class="jumbotron">
+<a href="/dashboard" class="btn btn-dark">Dashboard</a>
+<a href="/logout" class="btn btn-danger">Logout</a>
+<h1>@Model.Wedder1 and @Model.Wedder2's Wedding</h1>
+
+<h4>Date: @String.Format("{0:d}", Model.WeddingDay) </h4>
+<h4>Location:</h4>
+<h5>@Model.WeddingAddress</h5>
+<h4>Guests:</h4>
+    @foreach(Association w in Model.guests)
+    {
+        <p>@w.guest.FirstName @w.guest.LastName</p>
+    }
+</div>

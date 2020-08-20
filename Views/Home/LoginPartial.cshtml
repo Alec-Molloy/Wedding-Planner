@@ -1,0 +1,16 @@
+@model LoginUser
+
+<form class="card rounded col-18" action="/loginuser" method="post">
+<h1 class="text-center">Login</h1>
+    <div class="form-group">
+        <label asp-for="LoginEmail">Email Address</label>
+        <input asp-for="LoginEmail" class="form-control">
+        <span class="text-danger" asp-validation-for="LoginEmail"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LoginPassword">Password</label>
+        <input asp-for="LoginPassword" class="form-control">
+        <span class="text-danger" asp-validation-for="LoginPassword"></span>
+    </div>
+    <input type="submit" value="Login" class="btn btn-primary">
+</form>
